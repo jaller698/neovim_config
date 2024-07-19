@@ -1,3 +1,26 @@
+-- Function to update the Neovim configuration repository
+local function update_config()
+    -- Path to your local git repository
+    local repo_path = vim.fn.stdpath "config"  -- Assuming your config repo is the Neovim config directory
+
+    -- Command to pull the latest changes
+    local pull_command = { "git", "-C", repo_path, "pull" }
+
+    -- Execute the command
+    local result = vim.fn.systemlist(pull_command)
+
+    -- Print the result of the git pull command
+    if vim.v.shell_error == 0 then
+        print("Configuration updated successfully!")
+    else
+        print("Failed to update configuration:")
+        for _, line in ipairs(result) do
+            print(line)
+        end
+    end
+end
+
+update_config()
 -- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
 -- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
 local lazypath = vim.env.LAZY or vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
