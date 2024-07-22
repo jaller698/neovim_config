@@ -52,6 +52,11 @@ return {
             }
           }
         }
+      },
+      clangd = {
+        settings = {
+            arguments = { '--background-index', '--log=verbose', '--compile-commands-dir=/home/christian/code/compile_commands/dci/','--all-scopes-completion' },
+          }
       }
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },

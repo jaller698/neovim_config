@@ -11,5 +11,4 @@ return {
   { import = "astrocommunity.colorscheme.nordic-nvim" },
   { import = "astrocommunity.pack.rust"},
   { import = "astrocommunity.pack.cpp"},
-  { import = "astrocommunity.completion.copilot-lua-cmp"}
 }

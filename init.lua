@@ -32,23 +32,13 @@ vim.opt.rtp:prepend(lazypath)
 -- validate that lazy is available
 if not pcall(require, "lazy") then
   -- stylua: ignore
+end
 require "lazy_setup"
 require "polish"
 require("conform").setup({
   formatters_by_ft = {
     cpp = {"clang-format"},
   }
-})
-
-require('lspconfig').clangd.setup({
-  name='clangd',
-  cmd = {
-    'clangd',
-    '--background-index',
-    '--log=verbose',
-    '--compile-commands-dir=/home/christian/code/compile_commands/dci/',
-    '--all-scopes-completion'
-  },
 })
 
 vim.api.nvim_create_user_command('DiffFormat', function()
@@ -79,5 +69,4 @@ vim.api.nvim_create_user_command('DiffFormat', function()
     }
   end
 end, { desc = 'Format changed lines' })
-
 
