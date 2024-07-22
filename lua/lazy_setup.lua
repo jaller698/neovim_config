@@ -13,6 +13,7 @@ require("lazy").setup({
   },
   { import = "community" },
   { import = "plugins" },
+  { 'stevearc/conform.nvim', opts = {}, }
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "astrotheme", "habamax" } },

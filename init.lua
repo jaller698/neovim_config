@@ -20,7 +20,6 @@ local function update_config()
     end
 end
 
-update_config()
 -- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
 -- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
 local lazypath = vim.env.LAZY or vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -33,10 +32,52 @@ vim.opt.rtp:prepend(lazypath)
 -- validate that lazy is available
 if not pcall(require, "lazy") then
   -- stylua: ignore
-  vim.api.nvim_echo({ { ("Unable to load lazy from: %s\n"):format(lazypath), "ErrorMsg" }, { "Press any key to exit...", "MoreMsg" } }, true, {})
-  vim.fn.getchar()
-  vim.cmd.quit()
-end
-
 require "lazy_setup"
 require "polish"
+require("conform").setup({
+  formatters_by_ft = {
+    cpp = {"clang-format"},
+  }
+})
+
+require('lspconfig').clangd.setup({
+  name='clangd',
+  cmd = {
+    'clangd',
+    '--background-index',
+    '--log=verbose',
+    '--compile-commands-dir=/home/christian/code/compile_commands/dci/',
+    '--all-scopes-completion'
+  },
+})
+
+vim.api.nvim_create_user_command('DiffFormat', function()
+  local lines = vim.fn.system('git diff --unified=0'):gmatch('[^\n\r]+')
+  local ranges = {}
+  for line in lines do
+    if line:find('^@@') then
+      local line_nums = line:match('%+.- ')
+      if line_nums:find(',') then
+        local _, _, first, second = line_nums:find('(%d+),(%d+)')
+        table.insert(ranges, {
+          start = { tonumber(first), 0 },
+          ['end'] = { tonumber(first) + tonumber(second), 0 },
+        })
+      else
+        local first = tonumber(line_nums:match('%d+'))
+        table.insert(ranges, {
+          start = { first, 0 },
+          ['end'] = { first + 1, 0 },
+        })
+      end
+    end
+  end
+  local format = require('conform').format
+  for _, range in pairs(ranges) do
+    format {
+      range = range,
+    }
+  end
+end, { desc = 'Format changed lines' })
+
+
