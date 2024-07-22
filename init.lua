@@ -41,6 +41,17 @@ require("conform").setup({
   }
 })
 
+require('lspconfig').clangd.setup({
+  name='clangd',
+  cmd = {
+    'clangd',
+    '--background-index',
+    '--log=verbose',
+    '--compile-commands-dir=/home/christian/code/compile_commands/dci/',
+    '--all-scopes-completion'
+  },
+})
+
 vim.api.nvim_create_user_command('DiffFormat', function()
   local lines = vim.fn.system('git diff --unified=0'):gmatch('[^\n\r]+')
   local ranges = {}
