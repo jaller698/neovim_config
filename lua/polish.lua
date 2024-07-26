@@ -28,12 +28,13 @@ vim.api.nvim_create_autocmd('BufWritePre', {
                end,
 })
 
-vim.api.nvim_create_autocmd('BufWritePre', {
+vim.api.nvim_create_autocmd('BufWritePost', {
     pattern = '*',
     callback = function (ev)
-                    local filetype = vim.bo.filetype
+                    local filetype = vim.bo[ev.buf].filetype
                     if (filetype == 'cpp') then
                         vim.cmd('DiffFormat')
+                        vim.cmd('noautocmd w')
         end
     end
 })
