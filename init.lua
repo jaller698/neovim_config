@@ -52,6 +52,10 @@ require('lspconfig').clangd.setup({
   },
 })
 
+if vim.g.neovide then
+  require "neovide"
+end
+
 vim.api.nvim_create_user_command('DiffFormat', function()
   local ignore_filetypes = { "lua" }
   if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
