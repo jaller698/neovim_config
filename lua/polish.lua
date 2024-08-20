@@ -28,17 +28,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
                end,
 })
 
-vim.api.nvim_create_autocmd('BufWritePost', {
-    pattern = '*',
-    callback = function (ev)
-                    local filetype = vim.bo[ev.buf].filetype
-                    if (filetype == 'cpp') then
-                        vim.cmd('DiffFormat')
-                        vim.cmd('noautocmd w')
-        end
-    end
-})
-
 -- Remove trailing whitespace (https://vi.stackexchange.com/a/41388)
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = {"*"},
@@ -48,6 +37,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
         vim.fn.setpos(".", save_cursor)
     end,
 })
+
+require "autoformat"
 
 -- Set up custom filetypes
 -- vim.filetype.add {
