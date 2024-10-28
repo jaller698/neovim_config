@@ -18,7 +18,7 @@ return {
   -- customize alpha options
   {
     "goolord/alpha-nvim",
-    opts = function(_, opts)
+    config = function(_, opts)
       vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#ff4400" }) -- Use your desired color here
       -- customize the dashboard header
       local header_text = {
@@ -45,16 +45,48 @@ return {
         [[         \/____/                  \/____/                  \/____/                  ~~                                                \/____/                  \/____/]],
         }
 
+      local stats = require("lazy").stats()
+		  local total_plugins = stats.count
+      local datetime = tonumber(os.date("%H"))
+			local greeting = function()
+			  -- Determine the appropriate greeting based on the hour
+			  local mesg
+			  -- Get UserName
+			  local username = os.getenv("USERNAME")
+			  if datetime >= 0 and datetime < 6 then
+				  mesg = "Dreaming..󰒲 󰒲 "
+			  elseif datetime >= 6 and datetime < 12 then
+				  mesg = "🌅 Hi " .. username .. ", Good Morning ☀️"
+			  elseif datetime >= 12 and datetime < 18 then
+				  mesg = "🌞 Hi " .. username .. ", Good Afternoon ☕️"
+			  elseif datetime >= 18 and datetime < 21 then
+				  mesg = "🌆 Hi " .. username .. ", Good Evening 🌙"
+			  else
+				  mesg = "Hi " .. username .. ", it's getting late, get some sleep 😴"
+			  end
+			  return mesg
+		  end
+		  local function footer()
+        local footer_datetime = os.date("  %m-%d-%Y   %H:%M:%S")
+			  local version = vim.version()
+			  local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
+			  local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+			  local value =   footer_datetime .. "   Plugins " .. total_plugins .. nvim_version_info
+			  return value
+			end
       -- Directly assign the list of strings to the header
       opts.section.header.val = header_text
-
+      opts.section.footer.val = footer()
       -- Apply the highlight group to the header using the hl attribute
       opts.section.header.opts = {
         hl = "AlphaHeader",
         position = "center"
       }
-
-      return opts
+      opts.section.footer.opts = {
+        position = "center"
+      }
+      local alpha = require("alpha")
+      alpha.setup(opts.config)
     end,
   },
 
