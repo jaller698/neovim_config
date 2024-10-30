@@ -11,7 +11,6 @@ require('lspconfig').clangd.setup({
     'clangd',
     '--background-index',
     '--log=verbose',
-    '--compile-commands-dir=C:\\Users\\csso\\Kode\\compile_commands\\dci\\',
     '--all-scopes-completion',
     '--limit-references=0',
     '--header-insertion=iwyu'
