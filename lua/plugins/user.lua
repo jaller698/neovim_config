@@ -92,11 +92,6 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("telescope").setup {
-        -- Your telescope configuration here
-      }
-    end,
   },
 
   -- You can disable default plugins as follows:
