@@ -1,34 +1,9 @@
-# Neovim config files
+**This repo is supposed to used as config by NvChad users!**
 
-**NOTE:** This is for AstroNvim v4+
+- The main nvchad repo (NvChad/NvChad) is used as a plugin by this repo.
+- So you just import its modules , like `require "nvchad.options" , require "nvchad.mappings"`
+- So you can delete the .git from this repo ( when you clone it locally ) or fork it :)
 
-## 🛠️ Installation
+# Credits
 
-#### Make a backup of your current nvim and shared folder
-
-```shell
-mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-mv ~/.local/state/nvim ~/.local/state/nvim.bak
-mv ~/.cache/nvim ~/.cache/nvim.bak
-```
-
-#### Clone the repository
-
-##### Unix-like:
-
-```shell
-git clone https://github.com/jaller698/nvim ~/.config/nvim
-```
-
-##### Windows:
-```bash
-git clone https://github.com/jaller698/nvim ~/AppData/Local/nvim
-
-```
-
-#### Start Neovim
-
-```shell
-nvim
-```
+1) Lazyvim starter https://github.com/LazyVim/starter as nvchad's starter was inspired by Lazyvim's . It made a lot of things easier!
