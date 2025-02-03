@@ -64,3 +64,5 @@ end
 require "lazy_setup"
 require "polish"
 if vim.g.neovide then require "neovide" end
+vim.notify (vim.env.TERM)
+if vim.env.TERM == "alacritty" then require "alacritty" end

@@ -1,4 +1,4 @@
-if true then return end -- disable this plugin for now, try and test with kowalski
+if true then return {} end -- disable this plugin for now, try and test with kowalski
 
 ---@type LazySpec
 return {

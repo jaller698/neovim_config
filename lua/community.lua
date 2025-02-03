@@ -13,5 +13,5 @@ return {
   { import = "astrocommunity.pack.dart"},
   { import = "astrocommunity.pack.python"},
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
-  { import = "astrocommunity.completion.copilot-lua-cmp" },
+  -- { import = "astrocommunity.completion.copilot-lua-cmp" },
 }

@@ -93,6 +93,9 @@ return {
     "nvim-telescope/telescope.nvim",
     requires = { "nvim-lua/plenary.nvim" },
   },
+  {
+    "xiyaowong/transparent.nvim"
+  }
 
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
