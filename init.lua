@@ -46,6 +46,21 @@ local function update_config()
   end
 end
 
+local function is_wsl()
+  -- Check for the WSL_INTEROP environment variable
+  if vim.fn.getenv("WSL_INTEROP") ~= vim.NIL then
+    return true
+  end
+
+  -- Check for "microsoft" in the output of `uname -r`
+  local uname = vim.fn.system("uname -r")
+  if uname:lower():find("microsoft") then
+    return true
+  end
+
+  return false
+end
+
 update_config()
 
 -- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
@@ -66,3 +81,5 @@ require "polish"
 if vim.g.neovide then require "neovide" end
 vim.notify (vim.env.TERM)
 if vim.env.TERM == "alacritty" then require "alacritty" end
+-- if is_wsl() then require "wsl-clipboard" end
+require "neovide"
