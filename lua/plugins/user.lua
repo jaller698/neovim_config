@@ -94,7 +94,9 @@ return {
     requires = { "nvim-lua/plenary.nvim" },
   },
   {
-    "xiyaowong/transparent.nvim"
+    'tribela/transparent.nvim',
+    event = 'VimEnter',
+    config = true,
   }
 
   -- You can disable default plugins as follows:

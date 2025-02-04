@@ -7,6 +7,7 @@ return {
   "AstroNvim/astrocommunity",
   -- import/override with your plugins folder
   { import = "astrocommunity.colorscheme.tokyodark-nvim" },
+  { import = "astrocommunity.colorscheme.tokyonight-nvim"},
   { import = "astrocommunity.colorscheme.nordic-nvim" },
   { import = "astrocommunity.pack.rust"},
   { import = "astrocommunity.pack.cpp"},
